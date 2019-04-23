@@ -60,18 +60,13 @@ function NFuseEncode {
     $length = $Value.Length
     $arrReturn = [char[]]::new($length*2)
     $arrTemp = [char[]]::new($length*2)
-
     for ($i=0; $i -lt $length; $i++) {
         $a = $Value[$i]
         $a = $a -bxor 0xA5
         $a = $a -bxor $arrTemp[$i-1]
         $arrTemp[$i] = $a
-    }
-
-    for ($i=0; $i -lt $length; $i++) {
         $y = $i*2
-        $a = [int32]$arrTemp[$i]
-        $b = [int32]$arrTemp[$i]
+        $b = [int32]$a
         $b = $b -band 0x0F
         $b += 0x41
         $a = $a -shr 4

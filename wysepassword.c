@@ -37,11 +37,8 @@ void NFuseDecode(char *src, int length, unsigned char *dst)
 
 void NFuseEncode(char *src, int length, unsigned char *dst)
 {
-  unsigned char a;
-  unsigned char b;
-  unsigned char temp[256];
-  int i;
-  int y;
+  unsigned char a,b,temp[256];
+  int i,y;
 
   for (i=0; i<length; i++)
   {
@@ -49,13 +46,8 @@ void NFuseEncode(char *src, int length, unsigned char *dst)
     a^=0xA5;
     a^=temp[i-1];
     temp[i]=a;
-  }
-
-  for (i=0; i<length; i++)
-  {
     y=i*2;
-    a=temp[i];
-    b=temp[i];
+    b=a;
     b=b & 0x0F;
     b+=0x41;
     a>>=4;
